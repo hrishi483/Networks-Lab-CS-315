@@ -1,0 +1,56 @@
+Part1
+
+Q1
+IP Address of computer is: 10.240.118.1
+
+Q2
+TTLfield in this IPv4 datagram’s header = 254
+
+Q3
+
+
+Q4
+Header Length: 20 bytes
+
+Q5
+Total Length = 56
+Header Length = 20
+Payload = 36
+
+Q6
+The fragment offset is set to 0, therefore, the packet has not been fragmented.
+
+
+Q7
+The Identification, Header Checksum and stream Index change from each datagram to other.
+
+Q8
+The fields that stay constant are: Source and Destination Address, Checksum and Checksum verified status,Length of Data, Upper Layer protocol(ICMP) and IPv4.
+
+Q9
+There is no such pattern observerd in the values of Identification field of IP Datagrams, being sent. The identification number are randomly sent.
+
+Q10
+The value of Upper Layer Protocol is UDP(17) in the icmp field, but in the IP Datagram the 
+Upper Layer Protocol specified is ICMP(1)
+
+Q11
+Yes they are similar as in Q9
+
+Q12
+The values across the TTL field are similar across all the packets from all the routers, in the icmp field. In the IP field the TTL decrements starting from 255 and some cases it changes to 64 or 57.
+
+
+
+
+
+Part2:
+Q1 
+Yes the segment is fragmented across more than one IP. The first IP Datagram containing the first part of segment sent by my computer is in packet 507.
+
+Q2
+The fragment offset is not zero and there are three fragments with three fragment number visible in the IP Datagram visible in the header. Also the flags identify that it is fragmented.
+
+Q3
+The Flags field has fragement offset set to 0 indicating the it is first fragment segment.
+

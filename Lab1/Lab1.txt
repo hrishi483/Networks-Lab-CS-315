@@ -1,0 +1,79 @@
+Task1:
+(i)ping www.google.com is used to test the reachability of host and also get the RTT. Low values of the RTT and loss percentage indicates that the connection is successful.
+Other information includes IP address google (142.250.183.228). Size of packets 56(84) bytes of data.
+The ttl and the RTT time for each packet.
+The statistics of each packet
+rtt min/avg/max/mdev = 33.657/36.255/83.894/5.248 ms
+
+(ii)traceroute is command that is used to trace the route that your router takes from local machine to the ww.google.com.
+Indicates total number of Hops and also Hop information(hop number, IP address and hostname of router, RTT values)
+
+(iii)arp: Relationship between IP and MAC address for devices on network. Includes Address: IP address , HWType: hardware type, HWaddress: MAC address corresponding to IP address, Flags:Indicate success of the arp cache entry, Mask: Network Mask, Iface: Network entry used (ethernet,Wlan)
+
+(iv)ifconfig:
+
+(v)hostname: Gives information about hostname
+
+(vi)
+/etc/hostname: Displays the hostname stored in machine.
+
+Task2:
+1)hostname: Using hostname
+ip address using ifconfig and selecting from eth0->inet 
+
+2)Next hop is the gateway. Whenever we use traceroute www.website.com
+the ip address of first hop is the the same. This is the IP Address of First Hop :172.29.80.1
+Mac address:00:15:5d:85:63:39 obtained by using arp command
+
+3)To get the DNS address of local server 172.29.80.1 this is stored in /etc/resolv.conf file
+
+4) protocol names and their numeric representations for communication between networked device, appears in IP header.
+
+5) Using the services file we can get this information
+ssh             22/tcp 
+ftp             21/tcp
+nfs             2049/tcp
+nfs             2049/udp
+
+
+Task3
+(i)
+--- www.iitb.ac.in ping statistics ---
+93 packets transmitted, 0 received, 100% packet loss, time 95674ms
+
+--- www.amazon.in ping statistics ---
+12 packets transmitted, 12 received, 0% packet loss, time 11134ms
+Observations:there is an issue with reaching www.iitb.ac.in, resulting in packet loss, while www.amazon.in is reachable without any packet loss.
+The absence of RTT values for www.iitb.ac.in indicates that there was no successful communication during the ping test.
+
+
+(ii)
+(a) Total Number of Hops = 5
+traceroute to www.amazon.in (18.66.55.107), 30 hops max, 60 byte packets
+1  ****.mshome.net (172.29.80.1)  3.020 ms  2.969 ms  2.952 ms
+ 2  10.196.3.250 (10.196.3.250)  4.062 ms  4.044 ms  4.267 ms
+ 3  10.240.0.1 (10.240.0.1)  4.232 ms  4.212 ms  3.662 ms
+ 4  10.240.240.1 (10.240.240.1)  3.814 ms  3.796 ms  3.780 ms
+ 5  117.205.73.161 (117.205.73.161)  5.077 ms  5.061 ms  5.047 ms
+ 6  * * *
+ 7  * * *
+ 8  * * *
+ 9  * * *
+10  * * *
+11  * * *
+
+-->the IP address after www.amazon.in indicates the IP address of destination with 30 max Hops and packet of size 60
+-->The * indicates there is network congestion or high packet loss.
+-->If the final Hop shows the destination hostname/IP address we can conclude that destination is reached.
+-->The -w option allows you to specify the time to wait for a response from each hop. If the response time exceeds this value, the packet is considered lost.
+
+Hop Map
+(172.29.80.1)->(10.196.3.250)->(10.240.0.1)->(10.240.240.1)->(117.205.73.161)
+
+(b)Using traceroute -m <max_hops> www.amazon.in we can change the maximum hops.
+
+(c) At each router 3 packets are delivered and the three columns indicate the RTT time for those.
+In order to change the number of packets sent
+use traceroute -q <new_packet_numebr> ww.amazon.com
+
+(d)The TTL field is important in case of icmp so that the packets are not stuck in infinite loop, discarding the out-of-Date Packets and also helps in aiding the network diagonistics.
